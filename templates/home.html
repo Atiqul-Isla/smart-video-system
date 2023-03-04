@@ -1,0 +1,11 @@
+
+{% extends 'index.html' %}{% block content %}
+
+<h1>Smart Surveilance System</h1>
+<div class="flex flex-row">
+    <img src="{{ url_for('video') }}" width="49%" />
+    <img src="{{ url_for('moving') }}" width="49%" />
+</div>
+   
+
+{% endblock %}
