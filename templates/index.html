@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<style>
+
+body {
+  font-family: 'Prompt', sans-serif;
+  font-size: 18px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Quicksand", sans-serif;
+	font-weight: 1000;
+}
+
+</style>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -6,14 +21,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SMART|C</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-
   <body>
-	  <div>ElecEng 40I6 - Group 24 - Capstone</div>
-    {% block content %}
+    <div class="h-screen bg-gradient-to-b from-[black] to-[#1b1d20] text-white">
+      <div id="navbar">
+        <h1 class="text-sm pt-1 pl-2 text-gray-500">// ElecEng 40I6 - Group 24 - Capstone // Atiqul // Gurkaran // Nina // Deepjoy</h1>
+      </div>
+      <div class="">
+        <div>
+          <h1 class="text-5xl text-center pt-7">Smart Surveilance System</h1>
+        </div>
+        {% block content %}
+        
+        {% endblock %} 
+      </div>
+    </div>
     
-    {% endblock %}
     
   </body>
 
