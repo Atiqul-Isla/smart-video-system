@@ -35,9 +35,19 @@
   </div>
 </div>
 
-<script>
+<script type="text/javascript">
+   var socket = io.connect('http://127.0.0.1:5000');
   // Get the textarea element
   const alertTextarea = document.getElementById('alert-textarea');
+
+  socket.on('connect', function(data) {
+      // socket.send('Socket is connect to 127.0.0.1 on Port 5000 ...');
+    });
+
+  socket.on('sendAlert', function(data) {
+      // socket.send('Socket is connect to 127.0.0.1 on Port 5000 ...');
+      console.log("Received data: ", data);
+    });
 
   // Define a function to add alerts to the textarea
   function addAlert(alertText) {
@@ -46,16 +56,17 @@
       const paddedText = alertText.padStart(alertText.length + 3, ' '); // Add 3 spaces to align with the time string
       alertTextarea.value += `${timeStr} | ${paddedText}\n`;
       alertTextarea.scrollTop = alertTextarea.scrollHeight;
+      console.log("Added alert: ", alertText);
   }
 
-  // Define a function to receive recognized person's name from Python and add it to the alert textarea
-  function sendAlert(name) {
-      const alertText = `Person recognized: ${name}`;
-      addAlert(alertText);
-  }
+  // // Define a function to receive recognized person's name from Python and add it to the alert textarea
+  // function sendAlert(name) {
+  //     const alertText = `Person recognized: ${name}`;
+  //     addAlert(alertText);
+  // }
 </script>
 
-  
+
   
 
 
