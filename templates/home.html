@@ -5,10 +5,10 @@
   <div class="container mx-auto px-8 py-8">
     <div class="flex flex-row justify-center items-center gap-4">
       <div class="bg-gray-900 rounded-xl shadow-xl px-4 py-4">
-        <img src="https://images.unsplash.com/photo-1484863137850-59afcfe05386?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" class="w-full rounded-lg shadow-md" />
+        <img src="{{ url_for('video') }}" class="w-full rounded-lg shadow-md" />
       </div>
       <div class="bg-gray-900 rounded-xl shadow-xl px-4 py-4 relative">
-        <img src="https://images.unsplash.com/photo-1484863137850-59afcfe05386?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" class="w-full rounded-lg shadow-md" />
+        <img src="{{ url_for('moving') }}" class="w-full rounded-lg shadow-md" />
         <button class="absolute bottom-0 left-0 mb-4 ml-4 bg-black font-bold py-2 px-4 rounded text-green-500 hover:bg-white transition duration-300 ease-in-out" aria-label="Turn camera left">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8">
                 <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
@@ -36,23 +36,25 @@
 </div>
 
 <script>
-    // Get the textarea element
-    const alertTextarea = document.getElementById('alert-textarea');
+  // Get the textarea element
+  const alertTextarea = document.getElementById('alert-textarea');
 
-    // Define a function to add alerts to the textarea
-    function addAlert(alertText) {
-        const now = new Date();
-        const timeStr = now.toLocaleTimeString();
-        const paddedText = alertText.padStart(alertText.length + 3, ' '); // Add 3 spaces to align with the time string
-        alertTextarea.value += `${timeStr} | ${paddedText}\n`;
-        alertTextarea.scrollTop = alertTextarea.scrollHeight;
-    }
+  // Define a function to add alerts to the textarea
+  function addAlert(alertText) {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString();
+      const paddedText = alertText.padStart(alertText.length + 3, ' '); // Add 3 spaces to align with the time string
+      alertTextarea.value += `${timeStr} | ${paddedText}\n`;
+      alertTextarea.scrollTop = alertTextarea.scrollHeight;
+  }
 
-    // Example usage:
-    addAlert('Motion detected in the backyard');
-    addAlert('Person detected in the living room');
-
+  // Define a function to receive recognized person's name from Python and add it to the alert textarea
+  function sendAlert(name) {
+      const alertText = `Person recognized: ${name}`;
+      addAlert(alertText);
+  }
 </script>
+
   
   
 
