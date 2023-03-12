@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="bg-gradient-to-b from-black to-[#1b1d20]">
+    <div class="container mx-auto py-8">
+        <div class="mx-auto w-3/4">
+            <img src="{{ url_for('live') }}" class="w-2/3 mx-auto rounded-lg shadow-md mb-8" />
+            <form class="mb-8" method="POST" action="/add">
+                <label class="block font-bold mb-2">Name:</label>
+                <input type="text" name="name" class="block w-full py-2 px-3 rounded-lg shadow-md mb-4" placeholder="Enter your name">
+                <a href="{{ url_for('live') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out inline-block">Live Feed</a>
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 inline-block ml-4">Capture</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
