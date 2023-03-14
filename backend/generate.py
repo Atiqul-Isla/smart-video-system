@@ -34,32 +34,20 @@ def generate_frames(input):
             grayscale =cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             faces = fCascade.detectMultiScale(grayscale, scaleFactor=1.5, minNeighbors=5)
 
-            # Draw a border around the frame
-            cv2.rectangle(frame, (0, 0), (frame.shape[1], frame.shape[0]), (0, 0, 0), 20)
-
             # Display the number of faces detected
-            cv2.putText(frame, f"Faces Detected: {len(faces)}", (frame.shape[1]-350, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2, cv2.LINE_AA)
+            cv2.putText(frame, f"Faces Detected: {len(faces)}", (50, frame.shape[0]-50), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2, cv2.LINE_AA)
           
             for (x,y,w,h) in faces:
                 face = cv2.resize(grayscale[y:y+h, x:x+w], (200, 200))  # Crop and resize face
                 id_, confidence = recognizer.predict(face)  # Recognize face
                 if confidence>=45 and confidence <=85:  # Threshold for face recognition confidence
-                    # print(id_)
-                    # print(labels[id_])
+                    print(id_)
+                    print(labels[id_])
                     name = labels[id_]
-                    # if name != last_recognized[0] or time.time() - last_recognized[1] >= 300:
-                    #     # If recognized person is different from last recognized person or
-                    #     # more than 5 minutes have passed since last recognition,
-                    #     # send name to alert function and update last recognized person and time
-                    #     last_recognized = (name, time.time())
-                    #     # print(name)
-                    #     encoded_name = name.encode()
-                    #     print(f"emitting event with name: {name}")
-                    #     socketio.emit('sendAlert', {'name': name})
-                    #     # yield b'--frame\r\nContent-Type: text/plain\r\n\r\n' + js_command.encode() + b'\r\n'
+    
 
                     cv2.putText(frame, name, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2, cv2.LINE_AA)
-                    # print("{} face recognized (confidence: {})".format(name, confidence))
+                    print("{} face recognized (confidence: {})".format(name, confidence))
                 else:
                     cv2.putText(frame, "UNKNOWN", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2, cv2.LINE_AA)
                 
