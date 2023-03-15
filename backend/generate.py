@@ -6,7 +6,7 @@ import time
 
 
 
-def generate_frames(input):
+def generate_frames(input, dir):
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     yml_dir = os.path.join(BASE_DIR, "trainer.yml")
@@ -15,7 +15,8 @@ def generate_frames(input):
     last_recognized = ('', 0)
     camera=cv2.VideoCapture(input)
 
-    
+   ### IF dir IS NOT EMPTY DO THIS ###
+   
     recognizer = cv2.face.LBPHFaceRecognizer_create()
     recognizer.read(str(yml_dir))
 
@@ -36,19 +37,22 @@ def generate_frames(input):
 
             # Display the number of faces detected
             cv2.putText(frame, f"Faces Detected: {len(faces)}", (50, frame.shape[0]-50), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2, cv2.LINE_AA)
-          
+        
             for (x,y,w,h) in faces:
-                face = cv2.resize(grayscale[y:y+h, x:x+w], (200, 200))  # Crop and resize face
-                id_, confidence = recognizer.predict(face)  # Recognize face
-                if confidence>=45 and confidence <=85:  # Threshold for face recognition confidence
-                    print(id_)
-                    print(labels[id_])
-                    name = labels[id_]
-    
+                
+                if os.listdir(dir):
+                    face = cv2.resize(grayscale[y:y+h, x:x+w], (200, 200))  # Crop and resize face
+                    id_, confidence = recognizer.predict(face)  # Recognize face
+                    if confidence>=45 and confidence <=85:  # Threshold for face recognition confidence
+                        print(id_)
+                        print(labels[id_])
+                        name = labels[id_]
+        
 
-                    cv2.putText(frame, name, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2, cv2.LINE_AA)
-                    print("{} face recognized (confidence: {})".format(name, confidence))
+                        cv2.putText(frame, name, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2, cv2.LINE_AA)
+                        print("{} face recognized (confidence: {})".format(name, confidence))
                 else:
+                    # print('You should be here !!')
                     cv2.putText(frame, "UNKNOWN", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2, cv2.LINE_AA)
                 
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
@@ -58,6 +62,7 @@ def generate_frames(input):
 
             ret,buffer=cv2.imencode('.jpg', frame)
             frame=buffer.tobytes()
-            
+    
+
         yield(b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')

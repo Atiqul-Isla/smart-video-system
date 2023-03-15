@@ -1,6 +1,20 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<h1 class="text-white">Hello world</h1>
+<div class="flex flex-col justify-center items-center h-screen">
+    <h1 class="text-white mb-4 text-4xl font-bold">Retrain Model?</h1>
+    <div class="flex justify-center items-center mb-4">
+        <form method="POST" action="{{ url_for('train') }}">
+            <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-4" type="submit" name="button" value="start">Start Training</button>
+            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" type="submit" name="button" value="cancel">Cancel</button>
+        </form>
+    </div>
+    <div class="flex justify-between w-full fixed bottom-0 mb-4">
+        <a href="{{ url_for('add') }}" class="text-white hover:text-gray-400">< Back to Add</a>
+        <a href="{{ url_for('index') }}" class="text-white hover:text-gray-400 ml-auto mr-4">Skip ></a>
+    </div>
+</div>
 
 {% endblock %}
+
+{{ url_for('index') }}
