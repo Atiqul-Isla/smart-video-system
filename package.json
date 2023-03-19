@@ -1,0 +1,22 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atiqul-Isla/smart-video-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Atiqul-Isla/smart-video-system/issues"
+  },
+  "homepage": "https://github.com/Atiqul-Isla/smart-video-system#readme",
+  "dependencies": {
+    "tailwindcss": "^3.2.7"
+  }
+}
