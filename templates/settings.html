@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="h-[80vh]">
+    <div class="container mx-auto py-8">
+        <div class="w-full max-w-md mx-auto bg-gray-800 rounded p-5">
+        <h1 class="text-3xl font-bold text-white mb-4 text-center">Settings</h1>
+        <form action="#" method="POST">
+            <div class="mb-4">
+            <label class="block text-white font-bold mb-2" for="ip-address">
+                IP Address
+            </label>
+            <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="ip-address" name="ip-address" type="text" placeholder="192.168.1.100">
+            </div>
+            <div class="mb-4">
+            <div class="flex items-center">
+                <input class="mr-2 leading-tight" type="checkbox" id="sms-alerts" name="sms-alerts">
+                <label class="text-white font-bold" for="sms-alerts">
+                SMS Alerts
+                </label>
+            </div>
+            </div>
+            <div class="mb-4">
+            <div class="flex items-center">
+                <input class="mr-2 leading-tight" type="checkbox" id="email-alerts" name="email-alerts">
+                <label class="text-white font-bold" for="email-alerts">
+                Email Alerts
+                </label>
+            </div>
+            </div>
+            <div class="mb-8">
+            <div class="flex items-center">
+                <input class="mr-2 leading-tight" type="checkbox" id="video-alerts" name="video-alerts">
+                <label class="text-white font-bold" for="video-alerts">
+                Video Alerts
+                </label>
+            </div>
+            </div>
+            <div class="flex justify-center">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Save Settings
+            </button>
+            </div>
+        </form>
+        </div>
+    </div>
+    <div class="h-16"></div>
+</div>
+{% endblock %}

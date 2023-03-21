@@ -64,10 +64,10 @@ def train():
         return redirect(url_for('index'))
     return render_template('train.html')
 
-# @socketio.on("connect")
-# def connect(auth):
-#     print("Client connected")
-#     socketio.emit("connected", {"data": "Connected"})
+@app.route('/settings', methods=["POST", "GET"])
+def settings():
+    return render_template('settings.html')
+
 
 if __name__=="__main__":
     app.run(debug=True)
