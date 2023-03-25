@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 import pickle
 
-def trainer(dir):
+def trainer(dir, pickle_dir):
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     # Set the path of the directory containing all the subdirectories
     directory = os.path.join(BASE_DIR, "images")
@@ -46,7 +46,7 @@ def trainer(dir):
     #print(labels)
     #print(faces)
 
-    with open("labels.pickle", "wb") as f:
+    with open(str(pickle_dir), "wb") as f:
         pickle.dump(label_ids, f)
 
     if len(labels) > 0:
@@ -54,7 +54,7 @@ def trainer(dir):
         recognizer.save(str(dir))
     else:
         recognizer.clear()
-        print("You are in the right spot!")
+        # print("You are in the right spot!")
         if os.path.isfile(str(dir)):
             os.remove(str(dir))
         recognizer.save(str(dir))
