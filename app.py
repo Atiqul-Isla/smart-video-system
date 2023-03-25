@@ -59,7 +59,7 @@ def live():
 @app.route('/train', methods=["POST", "GET"])
 def train():
     if request.method == "POST":
-        trainer.trainer(yml_dir)
+        trainer.trainer(yml_dir, pickle_dir)
         flash('Training completed successfully!', 'success')
         return redirect(url_for('index'))
     return render_template('train.html')
