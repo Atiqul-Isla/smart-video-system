@@ -1,5 +1,5 @@
 # Flask modules
-from flask import Flask, render_template, Response, request, flash, url_for, redirect, get_flashed_messages
+from flask import Flask, render_template, Response, request, flash, url_for, redirect, get_flashed_messages, session
 from flask_socketio import SocketIO, emit
 
 # OpenCV
@@ -10,6 +10,9 @@ import numpy as np
 from PIL import Image
 import os
 import sys
+
+# SSH Connection
+import paramiko
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, '/backend')
@@ -22,6 +25,10 @@ from backend import generate
 from backend import Live_Feed
 from backend import capture
 from backend import trainer
+
+# Hand-made functions in same directory
+from SSH_left import connectLeft
+from SSH_right import connectRight
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -66,8 +73,44 @@ def train():
 
 @app.route('/settings', methods=["POST", "GET"])
 def settings():
+    if request.method == "POST":
+        # retrieve the form data submitted by the user
+        hst = request.form['hst']
+        usr = request.form['usr']
+        pwd = request.form['pwd']
+        # store the values in the session
+        session['hst'] = hst
+        session['usr'] = usr
+        session['pwd'] = pwd
+        return redirect(url_for('index'))
     return render_template('settings.html')
 
+@app.route('/left', methods=["POST", "GET"])
+def left():
+    if request.method =="POST":
+        print("LEFT REQUEST IS SUCCESFUL")
+        # os.system("python SSH_left.py")
+        # retrieve the parameter values from session
+        hst = session.get('hst', '10.0.0.83')
+        usr = session.get('usr', 'gurkaran')
+        pwd = session.get('pwd', 'gurkaran')
+        # call connectLeft with the retrieved values
+        connectLeft(hst, usr, pwd)
+        return ('', 204)
+    
+@app.route('/right', methods=["POST", "GET"])
+def right():
+    if request.method =="POST":
+        print("RIGHT REQUEST IS SUCCESFUL")
+        # os.system("python SSH_right.py")
+        # retrieve the parameter values from session
+        hst = session.get('hst', '10.0.0.83')
+        usr = session.get('usr', 'gurkaran')
+        pwd = session.get('pwd', 'gurkaran')
+        # call connectRight with the retrieved values
+        connectRight(hst, usr, pwd)
+        connectRight("10.0.0.83", "gurkaran", "gurkaran")  
+        return ('', 204)
 
 if __name__=="__main__":
     app.run(debug=True)
