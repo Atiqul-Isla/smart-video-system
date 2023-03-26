@@ -19,7 +19,13 @@ def capture(name, n):
         os.makedirs(user_dir)
 
     # Create CSV file to record image filenames and capture times
+    # Create CSV file to record image filenames and capture times
     csv_path = os.path.join(BASE_DIR, "capture_history.csv")
+    csv_header = ["filename", "timestamp", "name", "num_images"]
+    if not os.path.exists(csv_path):
+        with open(csv_path, mode='w') as file:
+            csv_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            csv_writer.writerow(csv_header)
     
 
     # Set up video capture device
@@ -52,7 +58,7 @@ def capture(name, n):
             # Record filename and capture time in CSV file
             with open(csv_path, mode='a') as file:
                 csv_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                csv_writer.writerow([filename, datetime.now().strftime('%Y-%m-%d %H:%M:%S')])
+                csv_writer.writerow([filename, datetime.now().strftime('%Y-%m-%d %H:%M:%S'), name, n])
 
         # Wait for user to press 'q' key to quit
         if cv2.waitKey(1) & 0xFF == ord('q'):

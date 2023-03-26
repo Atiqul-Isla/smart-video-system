@@ -27,10 +27,11 @@ h1, h2, h3, h4, h5, h6 {
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-W..."/>
   </head>
 
   <body class="max-h-screen">
-    <div class="h-screen bg-gradient-to-b from-[black] to-[#1b1d20] text-white">
+    <div class="bg-gradient-to-b from-[black] to-[#1b1d20] text-white">
       <div id="navbar">
         <!-- <h1 class="text-sm pt-1 pl-2 text-gray-500">// ElecEng 40I6 - Group 24 - Capstone // Atiqul // Gurkaran // Nina // Deepjoy</h1> -->
         <nav class="bg-gray-900">
@@ -53,22 +54,45 @@ h1, h2, h3, h4, h5, h6 {
                 </div>
                 <div class="hidden md:block md:ml-6">
                   <div class="flex">
-                    <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Live Feed</a>
-                    <a href="{{ url_for('settings') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Settings</a>
-                    <a href="{{ url_for('add') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Add</a>
-                    <a href="{{ url_for('train') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Train</a>
-                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">History</a>
+                    <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                      <span class="mr-2">
+                        <i class="fas fa-video"></i>
+                      </span>
+                      Live Feed
+                    </a>
+                    <a href="{{ url_for('settings') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                      <span class="mr-2">
+                        <i class="fas fa-cog"></i>
+                      </span>
+                      Settings
+                    </a>
+                    <a href="{{ url_for('add') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                      <span class="mr-2">
+                        <i class="fas fa-plus"></i>
+                      </span>
+                      Add
+                    </a>
+                    <a href="{{ url_for('train') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                      <span class="mr-2">
+                        <i class="fas fa-graduation-cap"></i>
+                      </span>
+                      Train
+                    </a>
+                    <a href="{{ url_for('history') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                      <span class="mr-2">
+                        <i class="fas fa-history"></i>
+                      </span>
+                      History
+                    </a>
                   </div>
                 </div>
+                
               </div>
             </div>
           </div>
         </nav>
       </div>
       <div class="">
-        <div>
-          <h1 class="text-5xl text-center pt-7">Smart Surveilance System</h1>
-        </div>
         {% block content %}
         
         {% endblock %} 
@@ -90,15 +114,15 @@ h1, h2, h3, h4, h5, h6 {
             </div>
             <div>
               <p class="text-sm">Nina</p>
-              <p class="text-xs text-gray-400">sondhg1 - 400193807</p>
+              <p class="text-xs text-gray-400">zhangd82 - 400183355</p>
             </div>
             <div>
               <p class="text-sm">Deepjoy</p>
-              <p class="text-xs text-gray-400">sondhg1 - 400193807</p>
+              <p class="text-xs text-gray-400">royd10 - 400193974</p>
             </div>
           </div>
           <div class="text-center md:text-right mt-4 md:mt-0">
-            <a href="https://github.com/your-github-repo" class="text-green-500 hover:text-green-600" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            <a href="https://github.com/Atiqul-Isla/smart-video-system" class="text-green-500 hover:text-green-600" target="_blank" rel="noopener noreferrer">View on GitHub</a>
           </div>
         </div>
       </footer>      
