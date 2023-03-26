@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container mx-auto pb-6">
+    <div class="py-4 px-4">
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <h2 class="text-2xl font-bold text-white">Capture History</h2>
+            <p class="text-gray-300 mt-2">View or download the capture, training or image history</p>
+        </div>
+
+        <div class="bg-gray-800 p-4 mt-4 rounded-lg">
+            <div class="flex justify-end items-center mb-4">
+                <div class="flex ml-4">
+                    <div>
+                        <a href="{{ url_for('download_history') }}" class="bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg flex items-center">
+                            <i class="fas fa-download mr-2"></i>History CSV
+                        </a>
+                    </div>
+                    <div class="ml-4">
+                        <a href="{{ url_for('download_training') }}" class="bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg flex items-center">
+                            <i class="fas fa-download mr-2"></i>Training YML
+                        </a>
+                    </div>
+                    <div class="ml-4">
+                        <a href="{{ url_for('download_labels') }}" class="bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg flex items-center">
+                            <i class="fas fa-download mr-2"></i>Labels PICKLE
+                        </a>
+                    </div>
+                    <div class="ml-4">
+                        <a href="{{ url_for('download_images') }}" class="bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg flex items-center">
+                            <i class="fas fa-download mr-2"></i>Images ZIP
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <table class="table-auto w-full">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 text-white font-bold">File Directory</th>
+                        <th class="px-4 py-2 text-white font-bold">Capture Time</th>
+                        <th class="px-4 py-2 text-white font-bold">Name</th>
+                        <th class="px-4 py-2 text-white font-bold">Total Captures</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for row in data %}
+                    <tr class="text-black">
+                        <td class="border px-4 py-2 text-gray-300">{{ row['filename'] }}</td>
+                        <td class="border px-4 py-2 text-gray-300">{{ row['timestamp'] }}</td>
+                        <td class="border px-4 py-2 text-gray-300">{{ row['name'] }}</td>
+                        <td class="border px-4 py-2 text-gray-300">{{ row['num_images'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
