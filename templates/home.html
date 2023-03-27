@@ -28,16 +28,16 @@
     <div class="border border-gray-900 rounded-lg p-4 mb-4 bg-gray-900 mt-7">
       <div class="flex justify-between items-center mb-4">
         <h3 class="text-2xl font-medium text-white"> Current Settings:</h3>
-        <button id="show-hide-btn" class="text-green-500 hover:text-green-600" aria-label="Hide Settings">
+        <a href="{{ url_for('settings') }}" id="show-hide-btn" class="text-green-500 hover:text-green-600" aria-label="Hide Settings">
           <i class="fas fa-wrench"></i>
-        </button>
+        </a>
       </div>
       <div id="settings-panel" class="text-gray-500">
-        <p><i class="fas fa-laptop"></i> IP Address: <span class="">192.168.1.1</span></p>
-        <p><i class="fas fa-user"></i> Username: <span class="">admin</span></p>
-        <p><i class="fas fa-lock"></i> Password: <span class="">********</span> <button id="show-password-btn" class="text-green-500 hover:text-green-600" aria-label="Show Password"><i class="fas fa-eye"></i></button></p>
-        <p><i class="fas fa-phone"></i> Phone Number: 555-1234</p>
-        <p><i class="fas fa-envelope"></i> Email: john@example.com</p>
+        <p class="text-gray-500"><i class="fas fa-laptop"></i> Machine IP Address: <span class="text-green-500">{{ hst }}</span></p>
+        <p class="text-gray-500"><i class="fas fa-user"></i> Machine Username: <span class="text-green-500">{{ usr }}</span></p>
+        <p class="text-gray-500"><i class="fas fa-lock"></i> Machine Password: <span class="text-green-500">{% if pwd %}Hidden{% else %}Not Set{% endif %}</span></p>
+        <p class="text-gray-500"><i class="fas fa-envelope"></i> Email: <span class="text-green-500">{{ email }}</span></p>
+        <p class="text-gray-500"><i class="fas fa-lock"></i> Email Password: <span class="text-green-500">{% if email_pwd %}Hidden{% else %}Not Set{% endif %}</span></p>
       </div>
     </div>
   </div>
