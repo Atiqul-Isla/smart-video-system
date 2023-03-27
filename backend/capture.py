@@ -19,7 +19,6 @@ def capture(name, n):
         os.makedirs(user_dir)
 
     # Create CSV file to record image filenames and capture times
-    # Create CSV file to record image filenames and capture times
     csv_path = os.path.join(BASE_DIR, "capture_history.csv")
     csv_header = ["filename", "timestamp", "name", "num_images"]
     if not os.path.exists(csv_path):
